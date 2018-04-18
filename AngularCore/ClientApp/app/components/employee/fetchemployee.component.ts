@@ -20,13 +20,11 @@ export class FetchEmployeeComponent {
     constructor(public http: Http, private _fb: FormBuilder, private _avRoute: ActivatedRoute,
         private _element: ElementRef,private _router: Router, private _employeeService: EmployeeService) {
         
-        
+        this.InitEmployee();
     }
 
     ngOnInit() {
 
-        debugger;
-        this.InitEmployee();
         //获取员工信息
         this.getEmployees();
         //获取城市信息
@@ -55,7 +53,8 @@ export class FetchEmployeeComponent {
     }
 
     save() {
-        if (!this.employeeForm.valid) {
+        debugger;
+        if (!this.employeeForm.valid && this.title != "删除") {
             return;
         }
 
@@ -65,7 +64,7 @@ export class FetchEmployeeComponent {
 
                     alert("保存成功！");
                     this.getEmployees();
-                    this.InitEmployee();
+                    //this.InitEmployee();
                     this._element.nativeElement.querySelector('.close').click();
 
                     //this._router.navigate(['/fetch-employee']);
@@ -77,7 +76,7 @@ export class FetchEmployeeComponent {
 
                     alert("编辑成功!");
                     this.getEmployees();
-                    this.InitEmployee();
+                    //this.InitEmployee();
                     this._element.nativeElement.querySelector('.close').click();
 
                     //this._router.navigate(['/fetch-employee']);
@@ -86,6 +85,7 @@ export class FetchEmployeeComponent {
         else if (this.title == "删除") {
             this._employeeService.deleteEmployee(this.employeeId).subscribe((data) => {
                 this.getEmployees();
+                this._element.nativeElement.querySelector('.close1').click();
             }, error => console.error(error));
         }
     }
@@ -102,6 +102,7 @@ export class FetchEmployeeComponent {
 
     delete(employeeID) {
         if (employeeID > 0) {
+            debugger;
             this.title = "删除";
             this.employeeId = employeeID;
         }
