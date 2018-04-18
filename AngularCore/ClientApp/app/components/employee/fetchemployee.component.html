@@ -1,0 +1,153 @@
+﻿<ol class="breadcrumb">
+    <li><a href="#">Home</a></li>
+    <li class="active">员工信息列表</li>
+</ol>
+<div class="clearfix"></div>
+<p *ngIf="!empList"><em>Loading...</em></p>
+<div class="panel panel-primary">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        <form class="form-group">
+            <div class="row">
+                <div class="form-group col-sm-3">
+                    <label for="employeename">姓名</label>
+                    <input type="text" class="form-control" id="employeename" placeholder="请输入姓名">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="employeegender">性别</label>
+                    <select class="form-control" id="employeegender">
+                        <option value="">-- 请选择 --</option>
+                        <option value="Male">男</option>
+                        <option value="Female">女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-3">
+                    <label for="employeedepartment">部门</label>
+                    <input type="text" class="form-control" id="employeedepartment" placeholder="请输入部门">
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="employeecity">城市</label>
+                    <select class="form-control" data-val="true" id="employeecity">
+                        <option value="">-- 请选择 --</option>
+                        <option *ngFor="let city of cityList" value={{city.cityName}}>
+                            {{city.cityName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default">查询</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#empEidtModal">新建</button>
+            </div>
+        </form>
+
+        <!--<a class="btn btn-primary" [routerLink]="['/register-employee']">新建</a>-->
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="table-responsive">
+    <table class='table table-striped table-bordered table-hover' *ngIf="empList">
+        <thead>
+            <tr>
+                <th>员工编号</th>
+                <th>员工姓名</th>
+                <th>员工性别</th>
+                <th>员工部门</th>
+                <th>所在城市</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emp of empList">
+                <td>{{ emp.employeeId }}</td>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.gender }}</td>
+                <td>{{ emp.department }}</td>
+                <td>{{ emp.city }}</td>
+                <td>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#empEidtModal" [routerLink]="" (click)="edit(emp.employeeId)">编辑</a>
+                    <a class="btn btn-danger" (click)="delete(emp.employeeId)">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+
+<!-- EditModal -->
+<div class="modal fade" id="empEidtModal" tabindex="-1" role="dialog" aria-labelledby="empEidtModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="empEidtModal">员工信息{{title}}</h3>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="employeeForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+                    <div class="form-group row">
+                        <label class="control-label col-md-12" for="Name">姓名</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" placeholder="请输入" formControlName="name">
+                        </div>
+                        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'name') && formDir.submitted">
+                            姓名必填
+                        </span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-12" for="Gender">性别</label>
+                        <div class="col-md-4">
+                            <select class="form-control" data-val="true" formControlName="gender">
+                                <option value="">-- 请选择 --</option>
+                                <option value="Male">男</option>
+                                <option value="Female">女</option>
+                            </select>
+                        </div>
+                        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'gender') && formDir.submitted">
+                            性别必填
+                        </span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-12" for="Department">部门</label>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" placeholder="请输入" formControlName="department">
+                        </div>
+                        <span class="text-danger" *ngIf="employeeForm.hasError('required', 'department') && formDir.submitted">
+                            部门必填
+                        </span>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-12" for="City">城市</label>
+                        <div class="col-md-4">
+                            <select class="form-control" data-val="true" formControlName="city">
+                                <option value="">--请选择--</option>
+                                <option *ngFor="let city of cityList" value={{city.cityName}}>
+                                    {{city.cityName}}
+                                </option>
+                            </select>
+
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="employeeForm.hasError('required', 'city') && formDir.submitted">
+                            城市必填
+                        </div>
+                    </div>
+                    <div class="form-group modal-footer">
+                        <button class="btn btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
