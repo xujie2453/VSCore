@@ -11,7 +11,8 @@ import { EmployeeService } from '../../services/empservice.service';
 export class FetchEmployeeComponent {
     
     employeeForm: FormGroup;
-    title: string = "新建";
+    title: string = "Add";
+    sname: string;
     employeeId: number;
     errorMessage: any;
     cityList: Array<any> = [];
@@ -54,23 +55,24 @@ export class FetchEmployeeComponent {
 
     save() {
         debugger;
-        if (!this.employeeForm.valid && this.title != "删除") {
+        if (!this.employeeForm.valid && this.title != "Delete") {
             return;
         }
 
-        if (this.title == "新建") {
+        if (this.title == "Add") {
             this._employeeService.saveEmployee(this.employeeForm.value)
                 .subscribe((data) => {
 
                     alert("保存成功！");
                     this.getEmployees();
+
                     //this.InitEmployee();
                     this._element.nativeElement.querySelector('.close').click();
 
                     //this._router.navigate(['/fetch-employee']);
                 }, error => this.errorMessage = error);
         }
-        else if (this.title == "编辑") {
+        else if (this.title == "Edit") {
             this._employeeService.updateEmployee(this.employeeForm.value)
                 .subscribe((data) => {
 
@@ -82,30 +84,33 @@ export class FetchEmployeeComponent {
                     //this._router.navigate(['/fetch-employee']);
                 }, error => this.errorMessage = error);
         }
-        else if (this.title == "删除") {
+        else if (this.title == "Delete") {
             this._employeeService.deleteEmployee(this.employeeId).subscribe((data) => {
                 this.getEmployees();
                 this._element.nativeElement.querySelector('.close1').click();
             }, error => console.error(error));
         }
     }
-
-    edit(employeeID) {
-        if (employeeID > 0) {
-            this.title = "编辑";
-            this.employeeId = employeeID;
+    
+    EmployeeEdit(title, employeeID) {
+        this.title = title;
+        this.employeeId = employeeID;
+        if (title == "Edit") {
             this._employeeService.getEmployeeById(this.employeeId)
                 .subscribe(resp => this.employeeForm.setValue(resp)
                 , error => this.errorMessage = error);
         }
-    }
-
-    delete(employeeID) {
-        if (employeeID > 0) {
-            debugger;
-            this.title = "删除";
-            this.employeeId = employeeID;
+        else if (title == "Add") {
+            this.employeeForm.reset({
+                employeeId: 0,
+                name: '',
+                gender: '--请选择--',
+                department: '',
+                city: '--请选择--'
+            });
+            //this.InitEmployee();
         }
+       
     }
 
     get name() { return this.employeeForm.get('name'); }
