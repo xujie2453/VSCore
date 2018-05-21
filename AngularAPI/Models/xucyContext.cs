@@ -13,7 +13,7 @@ namespace AngularAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=xcy;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\ProjectsV13;Database=xcy;Trusted_Connection=True;");
             }
         }
 
