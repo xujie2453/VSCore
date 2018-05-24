@@ -87,13 +87,14 @@ namespace AngularAPI.DataAccessLayer
             }
         }
 
-        public IEnumerable<TblEmployee> GetmployeeList(string sname,string sgender,string sdept,string scity) {
+        public IEnumerable<TblEmployee> GetmployeeList(string sname,string sgender,string sdept,string scity)
+        {
             try
             {
                 var data = from u in db.TblEmployee select u;
                 if (!string.IsNullOrEmpty(sname))
                 {
-                    data = data.Where(p => p.Name == sname);
+                    data = data.Where(p => p.Name.Contains(sname));
                 }
                 if (!string.IsNullOrEmpty(sgender))
                 {
@@ -101,7 +102,7 @@ namespace AngularAPI.DataAccessLayer
                 }
                 if (!string.IsNullOrEmpty(sdept))
                 {
-                    data = data.Where(p => p.Department == sdept);
+                    data = data.Where(p => p.Department.Contains(sdept));
                 }
                 if (!string.IsNullOrEmpty(scity))
                 {

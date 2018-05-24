@@ -58,5 +58,13 @@ namespace AngularCore.Controllers
             return objCities.GetCities();
         }
 
+        [HttpPost]
+        [Route("~/api/Employee/GetempList")]
+        public IEnumerable<TblEmployee> GetempList([FromBody] Object employee)
+        {
+            dynamic json = Newtonsoft.Json.Linq.JObject.Parse(employee.ToString());
+            return objemployee.GetmployeeList(Convert.ToString(json["name"]), Convert.ToString(json["gender"]), Convert.ToString(json["department"]), Convert.ToString(json["city"]));
+        }
+
     }
 }

@@ -29,13 +29,13 @@ export class EmployeeService {
     getEmployeeById(id: number) {
         return this._http.get(this.myAppUrl + "api/Employee/Details/" + id)
             .map((response: Response) => response.json())
-            .catch(this.errorHandler)
+            .catch(this.errorHandler);
     }
 
     saveEmployee(employee) {
         return this._http.post(this.myAppUrl + 'api/Employee/Create', employee)
             .map((response: Response) => response.json())
-            .catch(this.errorHandler)
+            .catch(this.errorHandler);
     }
 
     updateEmployee(employee) {
@@ -46,6 +46,13 @@ export class EmployeeService {
 
     deleteEmployee(id) {
         return this._http.delete(this.myAppUrl + "api/Employee/Delete/" + id)
+            .map((response: Response) => response.json())
+            .catch(this.errorHandler);
+    }
+
+    searchEmployee(employee) {
+        debugger;
+        return this._http.post(this.myAppUrl + "api/Employee/GetempList", employee)
             .map((response: Response) => response.json())
             .catch(this.errorHandler);
     }

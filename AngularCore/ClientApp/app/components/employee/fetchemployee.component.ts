@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../services/empservice.service';
+import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
     templateUrl: './fetchemployee.component.html'
@@ -11,6 +12,7 @@ import { EmployeeService } from '../../services/empservice.service';
 export class FetchEmployeeComponent {
     
     employeeForm: FormGroup;
+    employeeSearch: FormGroup;
     title: string = "Add";
     sname: string;
     employeeId: number;
@@ -40,16 +42,30 @@ export class FetchEmployeeComponent {
     InitEmployee() {
         this.employeeForm = this._fb.group({
             employeeId: 0,
-            name: ['', [Validators.required]],
+            name: ['', [Validators.required, Validators.maxLength(4000)]],
             gender: ['', [Validators.required]],
-            department: ['', [Validators.required]],
+            department: ['', [Validators.required, Validators.maxLength(4000)]],
             city: ['', [Validators.required]]
+        });
+
+        this.employeeSearch = new FormGroup({
+            employeeId: new FormControl(),
+            name: new FormControl(),
+            gender: new FormControl(),
+            department: new FormControl(),
+            city: new FormControl()
         });
     }
 
     getEmployees() {
         this._employeeService.getEmployees().subscribe(
             data => this.empList = data
+        )
+    }
+    getEmployeeDate() {
+        debugger;
+        this._employeeService.searchEmployee(this.employeeSearch.value)
+            .subscribe(data => this.empList = data
         )
     }
 
@@ -65,7 +81,6 @@ export class FetchEmployeeComponent {
 
                     alert("保存成功！");
                     this.getEmployees();
-
                     //this.InitEmployee();
                     this._element.nativeElement.querySelector('.close').click();
 
@@ -101,11 +116,12 @@ export class FetchEmployeeComponent {
                 , error => this.errorMessage = error);
         }
         else if (title == "Add") {
+            debugger;
             this.employeeForm.reset({
                 employeeId: 0,
-                name: '',
+                name: ['', [Validators.required, Validators.maxLength(4000)]],
                 gender: '--请选择--',
-                department: '',
+                department: ['', [Validators.required, Validators.maxLength(4000)]],
                 city: '--请选择--'
             });
             //this.InitEmployee();
@@ -113,6 +129,7 @@ export class FetchEmployeeComponent {
        
     }
 
+    //检查表单控件的有效性
     get name() { return this.employeeForm.get('name'); }
     get gender() { return this.employeeForm.get('gender'); }
     get department() { return this.employeeForm.get('department'); }
