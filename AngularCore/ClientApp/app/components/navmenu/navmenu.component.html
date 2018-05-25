@@ -1,4 +1,4 @@
-<div class='main-nav'>
+﻿<div class='main-nav'>
     <div class='navbar navbar-inverse'>
         <div class='navbar-header'>
             <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
@@ -13,13 +13,33 @@
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/user-List']">
+                        <span class='glyphicon glyphicon-home'></span> 用户管理
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/home']">
-                        <span class='glyphicon glyphicon-home'></span> Home
+                        <span class='glyphicon glyphicon-education'></span> 角色管理
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/counter']">
-                        <span class='glyphicon glyphicon-education'></span> Counter
+                        <span class='glyphicon glyphicon-education'></span> 功能管理
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/counter']">
+                        <span class='glyphicon glyphicon-education'></span> 日志管理
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/counter']">
+                        <span class='glyphicon glyphicon-education'></span> 框架管理
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/counter']">
+                        <span class='glyphicon glyphicon-education'></span> 基础信息维护
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">

@@ -6,6 +6,7 @@ import { EmployeeService } from '../../services/empservice.service';
 import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
+    selector: 'fetch-employee',
     templateUrl: './fetchemployee.component.html'
 })
 
@@ -15,6 +16,8 @@ export class FetchEmployeeComponent {
     employeeSearch: FormGroup;
     title: string = "Add";
     sname: string;
+    checkAllflag: boolean;
+    checkItemflag: boolean;
     employeeId: number;
     errorMessage: any;
     cityList: Array<any> = [];
@@ -56,6 +59,18 @@ export class FetchEmployeeComponent {
             city: new FormControl()
         });
     }
+
+    //全选
+    clickAll(e) {
+        debugger;
+        const checkbox = e.target;
+        this.checkItemflag = this.checkAllflag = checkbox.checked;
+    }
+    checkitem(e, item) {
+        debugger;
+        this.checkAllflag = false;
+    }
+    
 
     getEmployees() {
         this._employeeService.getEmployees().subscribe(

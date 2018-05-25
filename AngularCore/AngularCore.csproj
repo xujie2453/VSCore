@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\portals\moduleManager\moduleList.component.ts" />
+    <None Remove="ClientApp\app\components\portals\userManager\UserList.component.ts" />
+    <None Remove="ClientApp\app\components\portals\userManager\userReset.component.ts" />
+    <None Remove="ClientApp\app\components\portals\userManager\userRoleList.component.ts" />
     <None Remove="ClientApp\app\Services\empservice.service.ts" />
   </ItemGroup>
 
@@ -29,7 +33,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\portals\moduleManager\moduleList.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\portals\userManager\userList.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\portals\userManager\userReset.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\portals\userManager\userRoleList.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\Services\empservice.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\components\portals\roleManager\" />
+    <Folder Include="ClientApp\app\components\portals\logManager\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

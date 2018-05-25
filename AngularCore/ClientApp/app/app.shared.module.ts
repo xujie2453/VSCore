@@ -12,7 +12,8 @@ import { HomeComponent } from './components/home/home.component';
 //import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { FetchEmployeeComponent } from './components/employee/fetchemployee.component';
-import { Createemployee } from './components/employee/AddEmployee.component';
+import { UserListComponent } from './components/portals/userManager/userList.component';
+
 
 @NgModule({
     declarations: [
@@ -20,7 +21,7 @@ import { Createemployee } from './components/employee/AddEmployee.component';
         NavMenuComponent,
         CounterComponent,
         FetchEmployeeComponent,
-        Createemployee,
+        UserListComponent,
         HomeComponent
     ],
     imports: [
@@ -33,8 +34,7 @@ import { Createemployee } from './components/employee/AddEmployee.component';
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-employee', component: FetchEmployeeComponent },
-            { path: 'register-employee', component: Createemployee },
-            { path: 'employee/edit/:id', component: Createemployee },
+            { path: 'user-List', component: UserListComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],

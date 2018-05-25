@@ -52,7 +52,7 @@
     <table class='table table-striped table-bordered table-hover' *ngIf="empList">
         <thead>
             <tr>
-                <th>选择</th>
+                <th><input type="checkbox" (click)="clickAll($event)" [(ngModel)]="checkItemflag" [(checked)]="checkAllflag" />全选</th>
                 <th>员工编号</th>
                 <th>员工姓名</th>
                 <th>员工性别</th>
@@ -62,8 +62,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let emp of empList">
-                <td><input type="checkbox" name="eheckEmployee" value="{{ emp.employeeId }}" /></td>
+            <tr *ngFor="let emp of empList;let i=index">
+                <td><input type="checkbox" name="selected" (click)="checkitem($event,emp)" [(checked)]="checkItemflag" /></td>
                 <td>{{ emp.employeeId }}</td>
                 <td>{{ emp.name }}</td>
                 <td>{{ emp.gender }}</td>
