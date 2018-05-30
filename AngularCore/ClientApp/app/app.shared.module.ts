@@ -9,11 +9,9 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-//import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { FetchEmployeeComponent } from './components/employee/fetchemployee.component';
 import { UserListComponent } from './components/portals/userManager/userList.component';
-
 
 @NgModule({
     declarations: [
@@ -33,8 +31,8 @@ import { UserListComponent } from './components/portals/userManager/userList.com
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
-            { path: 'fetch-employee', component: FetchEmployeeComponent },
-            { path: 'user-List', component: UserListComponent },
+            { path: 'fetchEmployee', component: FetchEmployeeComponent },
+            { path: 'userList', component: UserListComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],
