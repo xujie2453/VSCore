@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { FetchEmployeeComponent } from './components/employee/fetchemployee.component';
 import { UserListComponent } from './components/portals/userManager/userList.component';
@@ -20,6 +21,7 @@ import { UserListComponent } from './components/portals/userManager/userList.com
         CounterComponent,
         FetchEmployeeComponent,
         UserListComponent,
+        LoginComponent,
         HomeComponent
     ],
     imports: [
@@ -28,12 +30,13 @@ import { UserListComponent } from './components/portals/userManager/userList.com
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: '', redirectTo: 'login', pathMatch: 'full' },
+            { path: 'login', component: LoginComponent },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetchEmployee', component: FetchEmployeeComponent },
             { path: 'userList', component: UserListComponent },
-            { path: '**', redirectTo: 'home' }
+            { path: '**', redirectTo: 'login' }
         ])
     ],
     providers: [EmployeeService]

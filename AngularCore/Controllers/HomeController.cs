@@ -11,7 +11,10 @@ namespace AngularCore.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            if(ViewData["User"]==null)
+                return RedirectToAction("Index", "login");
+            else
+                return View();
         }
 
         public IActionResult Error()
