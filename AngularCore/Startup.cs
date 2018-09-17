@@ -22,7 +22,12 @@ namespace AngularCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //获取数据库连接字符串
+            //var sqlConnectionString = Configuration.GetConnectionString("Default");
+
             services.AddMvc();
+            //Session服务
+            //services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +47,8 @@ namespace AngularCore
             }
 
             app.UseStaticFiles();
+            //Session服务
+            //app.UseSession();
 
             app.UseMvc(routes =>
             {
@@ -53,6 +60,7 @@ namespace AngularCore
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+
         }
     }
 }

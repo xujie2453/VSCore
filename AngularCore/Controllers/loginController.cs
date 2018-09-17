@@ -15,7 +15,8 @@ namespace AngularCore.Controllers
         [HttpPost]
         public IActionResult login()
         {
-            return View();
+            var s = Request.Form["inputUserName"];
+            return RedirectToAction("Index", "Home");
         }
     }
 }

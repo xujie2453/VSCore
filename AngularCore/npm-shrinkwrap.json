@@ -721,9 +721,9 @@
       }
     },
     "bootstrap": {
-      "version": "4.1.1",
-      "resolved": "http://registry.npm.taobao.org/bootstrap/download/bootstrap-4.1.1.tgz",
-      "integrity": "sha1-OuyFAA+mGQhdqNLkmD39Z88hFMs=",
+      "version": "3.3.7",
+      "resolved": "http://registry.npm.taobao.org/bootstrap/download/bootstrap-3.3.7.tgz",
+      "integrity": "sha1-WjiTlFSfIzMIdaOxUGVldPip63E=",
       "dev": true
     },
     "brace-expansion": {
@@ -4422,11 +4422,6 @@
         "pinkie": "^2.0.0"
       }
     },
-    "popper.js": {
-      "version": "1.14.3",
-      "resolved": "http://registry.npm.taobao.org/popper.js/download/popper.js-1.14.3.tgz",
-      "integrity": "sha1-FDj5jQRqz3tNeM1QK/QYrGTU8JU="
-    },
     "posix-character-classes": {
       "version": "0.1.1",
       "resolved": "https://registry.npmjs.org/posix-character-classes/-/posix-character-classes-0.1.1.tgz",
@@ -5923,11 +5918,6 @@
       "resolved": "https://registry.npmjs.org/tapable/-/tapable-0.2.6.tgz",
       "integrity": "sha1-IGvo4YiGC1FEJTdebxrom/sB/Y0=",
       "dev": true
-    },
-    "tether": {
-      "version": "1.4.4",
-      "resolved": "http://registry.npm.taobao.org/tether/download/tether-1.4.4.tgz",
-      "integrity": "sha1-ncbrKz5gHaIJj9Jk5/eosmTeESU="
     },
     "through": {
       "version": "2.3.8",

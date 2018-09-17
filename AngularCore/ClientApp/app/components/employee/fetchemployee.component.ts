@@ -3,7 +3,6 @@ import { Http, Headers } from '@angular/http';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../services/empservice.service';
-import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
     selector: 'fetch-employee',
@@ -26,11 +25,13 @@ export class FetchEmployeeComponent {
     constructor(public http: Http, private _fb: FormBuilder, private _avRoute: ActivatedRoute,
         private _element: ElementRef,private _router: Router, private _employeeService: EmployeeService) {
         
-        this.InitEmployee();
+        
     }
 
     ngOnInit() {
 
+        debugger;
+        this.InitEmployee();
         //获取员工信息
         this.getEmployees();
         //获取城市信息
@@ -62,12 +63,10 @@ export class FetchEmployeeComponent {
 
     //全选
     clickAll(e) {
-        debugger;
         const checkbox = e.target;
         this.checkItemflag = this.checkAllflag = checkbox.checked;
     }
     checkitem(e, item) {
-        debugger;
         this.checkAllflag = false;
     }
     
@@ -78,14 +77,12 @@ export class FetchEmployeeComponent {
         )
     }
     getEmployeeDate() {
-        debugger;
         this._employeeService.searchEmployee(this.employeeSearch.value)
             .subscribe(data => this.empList = data
         )
     }
 
     save() {
-        debugger;
         if (!this.employeeForm.valid && this.title != "Delete") {
             return;
         }
@@ -131,7 +128,6 @@ export class FetchEmployeeComponent {
                 , error => this.errorMessage = error);
         }
         else if (title == "Add") {
-            debugger;
             this.employeeForm.reset({
                 employeeId: 0,
                 name: ['', [Validators.required, Validators.maxLength(4000)]],
